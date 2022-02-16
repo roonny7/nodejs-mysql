@@ -1,0 +1,5 @@
+paso s para inicar en node.
+
+1.n npm install express
+2. crear carpeta de models y poner el servidor.
+3. instalar npm install sequelizer mysql2
