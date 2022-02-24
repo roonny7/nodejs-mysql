@@ -45,7 +45,7 @@ dbConnection.authenticate()
         // sync model
         dbConnection.sync();
 
-    Usuarios.findAll({  where: {IdUsuario: '1'} }).
+    Usuarios.findAll({  where: [{IdUsuario: '1'}, {Usuario : 'admin'}] }).
     then((data) => {
 
         console.log(data);
