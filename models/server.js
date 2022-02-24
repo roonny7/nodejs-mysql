@@ -15,7 +15,7 @@ class Server {
         this.paths = {
             categories : '/api/categorias',
             productos  : '/api/productos',
-            buscar : '/api/buscar',
+            buscar : '/api/usuarios/buscar',
             uploads : '/api/uploads'
         }
         
@@ -34,22 +34,22 @@ class Server {
     }
 
     async conectarDB() {
-       //await dbConnection();
+       const conexionBD = await dbConnection;
        //console.log('aqui está');
-        const dbConnection = new Sequelize('sistema_rh', 'root', '', {
+        /*const dbConnection = new Sequelize('sistema_rh', 'root', '', {
             host : 'localhost',
             dialect : 'mysql',
             //logging : false,
-        });
+        });*/
         //console.log(dbConnection);
 
-        dbConnection.authenticate()
+        /*conexionBD.authenticate()
         .then(() => {
             console.log('Connection establecida.');
         })
         .catch(err => {
             console.error('No se pudo conectar:', err);
-        });
+        });*/
     }
 
     middlewares() {
@@ -74,6 +74,8 @@ class Server {
           })
           
           
+          this.app.use(this.paths.buscar, require('../routes/buscar'));
+
           /*this.app.use(this.authPath, require('../routes/auth'));
           this.app.use(this.paths.buscar, require('../routes/buscar'));
           this.app.use(this.paths.categories, require('../routes/categorias'));
