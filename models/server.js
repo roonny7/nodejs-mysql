@@ -3,7 +3,8 @@ var cors = require('cors');
 const Sequelize  = require('sequelize');
 
 
-const { dbConnection }  = require('../database/config');
+const  { dbConnection }   = require('../database/config');
+console.log("carajos", dbConnection);
 
 
 class Server {
@@ -34,7 +35,7 @@ class Server {
     }
 
     async conectarDB() {
-       const conexionBD = await dbConnection;
+       const conexionBD = await dbConnection.authenticate();
        //console.log('aqui está');
         /*const dbConnection = new Sequelize('sistema_rh', 'root', '', {
             host : 'localhost',

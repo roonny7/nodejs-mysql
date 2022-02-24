@@ -6,6 +6,11 @@ const dbConnection = new Sequelize('sistema_rh', 'root', '', {
     //logging : false,
 });
 
+module.exports = {
+    dbConnection
+}
+
+/*
 dbConnection.authenticate()
         .then(() => {
             console.log('Connection establecida.');
@@ -51,7 +56,4 @@ dbConnection.authenticate()
         console.log(data);
           }).catch((error) => {
            //.. error
-          });
-module.exports = {
-    dbConnection
-}
+          });*/
