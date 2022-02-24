@@ -27,6 +27,15 @@ dbConnection.authenticate()
                 type: Sequelize.STRING,
                 allowNull: false
             },
+            Password: {
+                type: Sequelize.STRING,
+                allowNull: false
+            },
+            Usuario: {
+                type: Sequelize.STRING,
+                allowNull: false
+            },
+
            
         }, {
             modelName: "Usuarios",
@@ -36,7 +45,7 @@ dbConnection.authenticate()
         // sync model
         dbConnection.sync();
 
-    Usuarios.findAll({ /*.. conditions */ }).
+    Usuarios.findAll({  where: {IdUsuario: '1'} }).
     then((data) => {
 
         console.log(data);
