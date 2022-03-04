@@ -10,18 +10,10 @@ module.exports = {
     dbConnection
 }
 
-/*
-dbConnection.authenticate()
-        .then(() => {
-            console.log('Connection establecida.');
-        })
-        .catch(err => {
-            console.error('No se pudo conectar:', err);
-        });
 
 
 
-        var Usuarios = dbConnection.define("Usuarios", {
+      /*  var Usuarios = dbConnection.define("Usuarios", {
             IdUsuario: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
@@ -56,4 +48,16 @@ dbConnection.authenticate()
         console.log(data);
           }).catch((error) => {
            //.. error
-          });*/
+          });
+
+*/
+
+/*dbConnection.authenticate()
+        .then(() => {
+            console.log('Connection establecida.');
+        })
+        .catch(err => {
+            console.error('No se pudo conectar:', err);
+        });
+
+*/

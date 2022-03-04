@@ -4,7 +4,7 @@ const Sequelize  = require('sequelize');
 
 
 const  { dbConnection }   = require('../database/config');
-console.log("carajos", dbConnection);
+//console.log("carajos", dbConnection);
 
 
 class Server {
@@ -35,7 +35,10 @@ class Server {
     }
 
     async conectarDB() {
-       const conexionBD = await dbConnection.authenticate();
+       const conexionBD = await dbConnection.authenticate()
+       .then(() => { console.log("ya se conectó ")});
+
+       
        //console.log('aqui está');
         /*const dbConnection = new Sequelize('sistema_rh', 'root', '', {
             host : 'localhost',
