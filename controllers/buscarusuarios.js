@@ -65,14 +65,6 @@ const buscarusuariosnombre = async(req=request , res= response) =>  {
                  ]
                 }
               ]
-
-            /*[Op.and]: {
-                'IdUsuario': '1',
-                'Usuario' : 'admin',
-                [Op.or]: [{ 'IdUbicacion' : 1} , {'IdUbicacion' : 2} , {'IdUbicacion' : 3}],
-            }*/
-
-
           },
         attributes : [  /// para mostrar sólo los campos que están aqui 
             'Tipo', 'Usuario', 'Nombre', 'IdUbicacion', 
@@ -81,6 +73,14 @@ const buscarusuariosnombre = async(req=request , res= response) =>  {
         ]
     
     });    
+
+                /*[Op.and]: {
+                'IdUsuario': '1',
+                'Usuario' : 'admin',
+                [Op.or]: [{ 'IdUbicacion' : 1} , {'IdUbicacion' : 2} , {'IdUbicacion' : 3}],
+            }*/
+
+
    /* 
     where: {
         [Op.and]: [
