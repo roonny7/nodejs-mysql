@@ -1,5 +1,8 @@
 const { response, request } = require("express");
 const  { Empleados }  = require("../models/empleados");
+const  { Dependencias }  = require("../models/dependencias");
+const  { Niveles }  = require("../models/niveles");
+console.log(Dependencias);
 const Sequelize  = require('sequelize');
 
 const Op  = Sequelize.Op;
@@ -36,17 +39,40 @@ const buscarempleados = async(req = request, res= response) =>  {
    //unir condiciones
    let condicionesWhere = { ...whereNombre, ...whereNoEmpleado}
 
+
+   Empleados.belongsTo(Dependencias, {foreignKey: 'IdDependencia'});
+   Dependencias.hasOne(Empleados, {foreignKey : 'IdDependencia', targetKey : 'IdDependencia'} );
+
+   
+   const datosextras = {
+       azul : 1,
+       verde : 1,
+   }
+
+
    const empleados = await Empleados.findAll({  
     where: condicionesWhere ,
+    include : [{ model : Dependencias, required : true}],
     offset : Number(inicio),
     limit : Number(fin),
     order : [
         ['APaterno'], ['AMaterno'], ['Nombre'], 
     ]
     
+    
 
-});    
+}); 
+    const rowEmpleado=empleados;
+    let nivel;
+    nivel = (rowEmpleado[0].IdNivel);
+    
+    if (nivel){
+        nivel = await Niveles.findByPk(nivel,{ raw: true});
+    }
+    nivel = JSON.stringify(nivel);
+    nivel = JSON.parse(nivel);
 
+    empleados.push(nivel);
 
     res.status(418).json({
         msg : `El resultado de la consulta es : `,
