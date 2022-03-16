@@ -13,15 +13,19 @@ const buscarusuarios = async(req, res= response) =>  {
     
     //console.log(Usuario);
         const usuarios = await Usuarios.findAll({
-            where: { Tipo: 'A', IdUbicacion : 1 }  ///condiciones sql. AND.
+            where: { Estado : '0' }  ///condiciones sql. AND.
         
         });    
     
 
-    res.status(418).json({
-        msg : `Las colecciones permitidas son : `,
-        usuarios
-    })
+    /*res.status(200).json({
+        data : usuarios
+    })*/
+    /*response.writeHead(200, {
+        'Content-Length': 80,
+        'Content-Type': 'text/plain' });*/
+        res.setHeader('Content-Range', 'posts 10-20/40');
+        res.send(JSON.stringify(usuarios));
 }
 
 const buscarusuariosnombre = async(req=request , res= response) =>  {
@@ -101,10 +105,12 @@ const buscarusuariosnombre = async(req=request , res= response) =>  {
           }
         ]
       }*/
-    res.status(418).json({
-        msg : `Las colecciones permitidas son : `,
+    /*res.status(200).json(  
         usuarios
-    })
+    )*/
+
+    res.setHeader('Content-Range', 'posts 10-20/40');
+        res.send(JSON.stringify(usuarios));
 }
 
 

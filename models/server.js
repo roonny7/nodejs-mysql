@@ -16,7 +16,8 @@ class Server {
         this.paths = {
             categories : '/api/categorias',
             productos  : '/api/productos',
-            buscar : '/api/usuarios/buscar',
+            buscar : '/api/usuarios/buscar/users',
+            buscarposts : '/api/usuarios/buscar/posts',
             empleados : '/api/empleados'
         }
         
@@ -59,7 +60,7 @@ class Server {
     middlewares() {
 
         //CORS
-        this.app.use(cors());
+        this.app.use(cors({ exposedHeaders : ['Content-Range']}));
 
         //lectura y parseo del body, que venga de put, post, delete
         this.app.use(express.json());
@@ -79,6 +80,7 @@ class Server {
           
           
           this.app.use(this.paths.buscar, require('../routes/buscar'));
+          this.app.use(this.paths.buscarposts, require('../routes/buscar'));
           this.app.use(this.paths.empleados, require('../routes/empleados'));
 
           /*this.app.use(this.authPath, require('../routes/auth'));

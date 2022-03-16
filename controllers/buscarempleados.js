@@ -74,7 +74,7 @@ const buscarempleados = async(req = request, res= response) =>  {
 
     empleados.push(nivel);
 
-    res.status(418).json({
+    res.status(200).json({
         msg : `El resultado de la consulta es : `,
         empleados
     })

@@ -2,11 +2,13 @@ const { Sequelize }  = require('sequelize');
 const { dbConnection }  = require('../database/config');
 
 var Usuarios = dbConnection.define("Usuarios", {
-  IdUsuario: {
+  id: {
       type: Sequelize.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
+      field : 'IdUsuario'
+
   },
   Nombre: {
       type: Sequelize.STRING,
@@ -20,7 +22,10 @@ var Usuarios = dbConnection.define("Usuarios", {
       type: Sequelize.STRING,
       allowNull: false
   },
-
+  Tipo: {
+    type: Sequelize.STRING,
+    allowNull: false
+},
  
 }, {
   modelName: "Usuarios",
