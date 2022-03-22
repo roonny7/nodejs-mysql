@@ -10,10 +10,58 @@ const Op  = Sequelize.Op;
 
 const buscarusuarios = async(req, res= response) =>  {
       
+        let { filter = {}, sort='Nombre' }  = req.query;
+        //if (filter=='{}')  filter = '';
+        let filtro = filter;
+        filtro = filtro.substring(6,100);  
+        filtro = filtro.slice(0,-2);  
+
+        let vectorOrden = sort.split(',');
+        let campoOrden = vectorOrden[0];
+        let orden = vectorOrden[1];
+
+        campoOrden = campoOrden.slice(2,50);
+        campoOrden = campoOrden.slice(0,-1);
+
+        orden = orden.slice(0,-2);
+        orden = orden.slice(1,50);
+
+
+
+        console.log(req.query);
+        console.log(orden);
+        let orden2 = req.query.sort;
+        orden2= orden2.replace("'","");
+        console.log(orden2);
+
+
+        //console.log(filtro, req.query);
+
+        //console.log(order);
+
+        //si llegó el nombre
+        let whereNombre = { Nombre : {
+                [Op.like]: `%${filtro}%`
+            },
+        }
+
+        console.log(whereNombre);
+        //orden =   `['${campoOrden}', '${orden}']`;
+
+        console.log(orden);
     
-    //console.log(Usuario);
         const usuarios = await Usuarios.findAll({
-            where: { Estado : '0' }  ///condiciones sql. AND.
+            where: { 
+                [Op.and]: [
+                    { 'Estado' : '1'},
+                    { ...whereNombre}
+                ]
+                                ///... whereNombre 
+            },
+            order :[ [`${campoOrden}`, `${orden}`]
+                 
+            ]
+
         
         });    
     
