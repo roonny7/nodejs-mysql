@@ -33,7 +33,7 @@ var Usuarios = dbConnection.define("Usuarios", {
 });
 
 // sync model
-dbConnection.sync();
+//dbConnection.sync();
 //console.log("aqui está");
 
 module.exports = { 

@@ -6,6 +6,47 @@ const Sequelize  = require('sequelize');
 const Op  = Sequelize.Op;
 //console.log(Op);
 //console.log("vale",Usuarios);
+const crearusuarios = async (req = request, res = response) => {
+
+    console.log("creando");
+    console.log(req.params);
+
+    res.status(200).json({
+        data : "ya fue"
+    })
+
+}
+
+const actualizarusuarioid = async (req = request, res = response) => {
+    const datosNuevos = req.body;
+    const { id } = datosNuevos;
+
+    const usuarioActualizado = await Usuarios.update(
+        datosNuevos,
+        {
+            where : { IdUsuario : id }
+        }
+    );
+
+    console.log(usuarioActualizado);
+    //res.status(200).json({ error: 'message' });
+    res.setHeader('Content-Range', 'posts 10-20/40');
+    
+    res.send(JSON.stringify(usuarioActualizado));
+    
+}
+
+
+
+const buscarusuariosid = async(req=request , res= response) =>  {
+    //console.log(req.params);
+    const { id:idUsuario = '' }  = req.params;
+    
+    const usuario = await Usuarios.findByPk(idUsuario);    
+
+    res.setHeader('Content-Range', 'posts 10-20/40');
+    res.send(JSON.stringify(usuario));
+}
 
 
 const buscarusuarios = async(req, res= response) =>  {
@@ -28,11 +69,11 @@ const buscarusuarios = async(req, res= response) =>  {
 
 
 
-        console.log(req.query);
-        console.log(orden);
+        //console.log(req.query);
+        //console.log(orden);
         let orden2 = req.query.sort;
         orden2= orden2.replace("'","");
-        console.log(orden2);
+        //console.log(orden2);
 
 
         //console.log(filtro, req.query);
@@ -45,10 +86,10 @@ const buscarusuarios = async(req, res= response) =>  {
             },
         }
 
-        console.log(whereNombre);
+        //console.log(whereNombre);
         //orden =   `['${campoOrden}', '${orden}']`;
 
-        console.log(orden);
+        //console.log(orden);
     
         const usuarios = await Usuarios.findAll({
             where: { 
@@ -159,10 +200,12 @@ const buscarusuariosnombre = async(req=request , res= response) =>  {
 
     res.setHeader('Content-Range', 'posts 10-20/40');
         res.send(JSON.stringify(usuarios));
+
+
 }
 
 
 module.exports = {
 
-    buscarusuarios, buscarusuariosnombre
+    buscarusuarios, buscarusuariosnombre, crearusuarios, buscarusuariosid, actualizarusuarioid
 }

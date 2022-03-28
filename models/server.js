@@ -16,7 +16,7 @@ class Server {
         this.paths = {
             categories : '/api/categorias',
             productos  : '/api/productos',
-            buscar : '/api/usuarios/buscar/users',
+            buscar : '/api/',
             buscarposts : '/api/usuarios/buscar/posts',
             empleados : '/api/empleados'
         }
@@ -80,8 +80,8 @@ class Server {
           
           
           this.app.use(this.paths.buscar, require('../routes/buscar'));
-          this.app.use(this.paths.buscarposts, require('../routes/buscar'));
-          this.app.use(this.paths.empleados, require('../routes/empleados'));
+          /*this.app.use(this.paths.buscarposts, require('../routes/buscar'));
+          this.app.use(this.paths.empleados, require('../routes/empleados'));*/
 
           /*this.app.use(this.authPath, require('../routes/auth'));
           this.app.use(this.paths.buscar, require('../routes/buscar'));
