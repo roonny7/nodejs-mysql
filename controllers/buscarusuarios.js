@@ -7,13 +7,22 @@ const Op  = Sequelize.Op;
 //console.log(Op);
 //console.log("vale",Usuarios);
 const crearusuarios = async (req = request, res = response) => {
+    
+    const datosNuevos = req.body;
+    let tipo = datosNuevos.Tipo;
+    tipo = tipo[0];
 
-    console.log("creando");
-    console.log(req.params);
+    datosNuevos.Tipo=tipo;
 
-    res.status(200).json({
-        data : "ya fue"
-    })
+    console.log(datosNuevos);
+    const crearusuario = await Usuarios.create(
+        datosNuevos,       
+    );
+
+    console.log(crearusuario);
+   
+
+    res.send(JSON.stringify(crearusuario));
 
 }
 
@@ -28,14 +37,27 @@ const actualizarusuarioid = async (req = request, res = response) => {
         }
     );
 
-    console.log(usuarioActualizado);
-    //res.status(200).json({ error: 'message' });
-    res.setHeader('Content-Range', 'posts 10-20/40');
+    const usuario = await Usuarios.findByPk(id);
     
-    res.send(JSON.stringify(usuarioActualizado));
+    res.setHeader('Content-Range', 'posts 10-20/40');
+    res.send(JSON.stringify(usuario));
+
     
 }
 
+const borrarusuarioid = async(req=request , res= response) =>  {
+    //console.log(req.params);
+    const { id:idUsuario = '' }  = req.params;
+    
+    const usuario = await Usuarios.destroy({
+        where : {
+            IdUsuario : idUsuario
+        }
+    });    
+
+    res.setHeader('Content-Range', 'posts 10-20/40');
+    res.send(JSON.stringify(usuario));
+}
 
 
 const buscarusuariosid = async(req=request , res= response) =>  {
@@ -207,5 +229,5 @@ const buscarusuariosnombre = async(req=request , res= response) =>  {
 
 module.exports = {
 
-    buscarusuarios, buscarusuariosnombre, crearusuarios, buscarusuariosid, actualizarusuarioid
+    buscarusuarios, buscarusuariosnombre, crearusuarios, buscarusuariosid, actualizarusuarioid, borrarusuarioid
 }
