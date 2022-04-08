@@ -2,18 +2,24 @@ const { Sequelize }  = require('sequelize');
 const { dbConnection }  = require('../database/config');
 
 var Niveles = dbConnection.define("Niveles", {
-  IdNivel: {
+  id: {
       type: Sequelize.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
+      field : 'IdNivel'
   },
-  Nivel: {
+  Descripcion: {
       type: Sequelize.STRING,
       allowNull: false,
       field : 'Descripcion'
   },
   
+  Nivel: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    field : 'Nivel'
+},
  
 }, {
   modelName: "Niveles",

@@ -18,7 +18,9 @@ class Server {
             productos  : '/api/productos',
             buscar : '/api/',
             buscarposts : '/api/usuarios/buscar/posts',
-            empleados : '/api/empleados'
+            empleados : '/api/empleados',
+            niveles : '/api/'
+
         }
         
         this.usuariosPath = '/api/usuarios';
@@ -80,6 +82,7 @@ class Server {
           
           
           this.app.use(this.paths.buscar, require('../routes/buscar'));
+          
           /*this.app.use(this.paths.buscarposts, require('../routes/buscar'));
           this.app.use(this.paths.empleados, require('../routes/empleados'));*/
 
