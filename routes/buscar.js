@@ -2,6 +2,8 @@ const { Router}  = require ( 'express');
 //const { buscar } = require('../controllers/buscarusuarios.js');
 const { buscarusuarios, borrarusuarioid, crearusuarios, buscarusuariosid, actualizarusuarioid } = require('../controllers/buscarusuarios')
 const { buscarniveles, buscarnivelid, actualizarnivelid, crearniveles, borrarNivel } = require('../controllers/buscarniveles')
+const { buscarempleados } = require('../controllers/buscarempleados');
+const { buscarempleadosid } = require('../controllers/buscarempleadosid');
 const router = Router();
 
 router.get('/users/',  buscarusuarios);
@@ -17,6 +19,8 @@ router.put('/niveles/:id',  actualizarnivelid);
 router.post('/niveles/',  crearniveles);
 router.delete('/niveles/:id',  borrarNivel)
 
+router.get('/empleados/',  buscarempleados);
+router.get('/empleados/:id',  buscarempleadosid);
 
 
 

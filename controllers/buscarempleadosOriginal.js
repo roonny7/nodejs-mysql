@@ -18,7 +18,7 @@ const buscarempleados = async(req = request, res= response) =>  {
     
     //si llegó el nombre
     let whereNombre = { 
-        [Op.and] : {
+        [Op.or] : {
             Nombre : { 
                 [Op.like]: `%${ nombre}%` 
             }, 
@@ -33,7 +33,7 @@ const buscarempleados = async(req = request, res= response) =>  {
 
     let whereNoEmpleado = '';
     //console.log("vale", noempleado);
-    //(noempleado!=00000) ? whereNoEmpleado = { NoEmpleado : noempleado } : whereNoEmpleado='';
+  //  (noempleado!=00000) ? whereNoEmpleado = { NoEmpleado : noempleado } : whereNoEmpleado='';
     
     
    //unir condiciones
@@ -62,7 +62,7 @@ const buscarempleados = async(req = request, res= response) =>  {
     
 
 }); 
-    /*const rowEmpleado=empleados;
+    const rowEmpleado=empleados;
     let nivel;
     nivel = (rowEmpleado[0].IdNivel);
     
@@ -72,10 +72,10 @@ const buscarempleados = async(req = request, res= response) =>  {
     nivel = JSON.stringify(nivel);
     nivel = JSON.parse(nivel);
 
-    empleados.push(nivel);*/
+    empleados.push(nivel);
 
     res.status(200).json({
-       // msg : `El resultado de la consulta es : `,
+        msg : `El resultado de la consulta es : `,
         empleados
     })
 }
