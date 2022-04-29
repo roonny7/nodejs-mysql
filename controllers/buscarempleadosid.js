@@ -3,6 +3,7 @@ const  { Empleados }  = require("../models/empleados");
 const  { Dependencias }  = require("../models/dependencias");
 const  { Niveles }  = require("../models/niveles");
 const Sequelize  = require('sequelize');
+const { TiposEmpleado } = require("../models/TiposEmpleado");
 
 const Op  = Sequelize.Op;
 
@@ -21,7 +22,12 @@ const buscarempleadosid = async(req = request, res= response) =>  {
 
 
    Empleados.belongsTo(Dependencias, {foreignKey: 'IdDependencia'});
+   Empleados.belongsTo(Niveles, {foreignKey: 'IdNivel'});
+   Empleados.belongsTo(TiposEmpleado, {foreignKey: 'TipoEmp'});
+
    Dependencias.hasOne(Empleados, {foreignKey : 'IdDependencia', targetKey : 'IdDependencia'} );
+   Niveles.hasOne(Empleados, {foreignKey : 'IdNivel', targetKey : 'IdNivel'} );
+   TiposEmpleado.hasOne(Empleados, {foreignKey : 'TipoEmp', targetKey : 'IdTipoEmpleado'} );
 
    
    const datosextras = {
@@ -32,7 +38,7 @@ const buscarempleadosid = async(req = request, res= response) =>  {
 
    const empleados = await Empleados.findAll({  
     where: condicionesWhere ,
-    include : [{ model : Dependencias, required : true}],
+    include : [{ model : Dependencias, required : true}, { model : Niveles, required : true}, { model : TiposEmpleado, required : true}],
     
     
     

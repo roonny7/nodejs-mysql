@@ -10,7 +10,7 @@ const Op  = Sequelize.Op;
 
 const buscarempleados = async(req = request, res= response) =>  {
        
-    const { nombre = '', paterno = '', materno='', noempleado:urlnoempleado=0, inicio=0, fin=50 }  = req.query;
+    const { nombre = '', paterno = '', materno='', noempleado:urlnoempleado=0, inicio=0, fin=5000000 }  = req.query;
     //console.log("valw", urlnoempleado);
     //let noempleado = urlnoempleado.padStart(5, '0'); //00099
     

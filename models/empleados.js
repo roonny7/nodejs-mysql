@@ -35,6 +35,18 @@ var Empleados = dbConnection.define("Empleados", {
     type: Sequelize.INTEGER,
     allowNull: false
   },  
+  Puesto: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  CURP: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  RFC: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },  
 }, {
   modelName: "Empleados",
   timestamps: false   
