@@ -1,35 +1,32 @@
 const { Sequelize }  = require('sequelize');
 const { dbConnection }  = require('../database/config');
 
-var Niveles = dbConnection.define("Niveles", {
+var TipoMovimientos = dbConnection.define("TipoMovimientos", {
   id: {
       type: Sequelize.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
-      field : 'IdNivel'
+      field : 'IdTipo'
   },
   Descripcion: {
       type: Sequelize.STRING,
       allowNull: false,
       field : 'Descripcion'
   },
-  
-  Nivel: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    field : 'Nivel'
-},
  
 }, {
-  modelName: "Niveles",
-  timestamps: false   
-});
+  modelName: "TipoMovimientos",
+  timestamps: false ,
+  freezeTableName: true
+},
+
+);
 
 // sync model
 //dbConnection.sync();
 //console.log("aqui está");
 
 module.exports = { 
-    Niveles
+    TipoMovimientos
 }

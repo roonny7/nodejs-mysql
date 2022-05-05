@@ -20,7 +20,7 @@ var Dependencias = dbConnection.define("Dependencias", {
 });
 
 // sync model
-dbConnection.sync();
+//dbConnection.sync();
 //console.log("aqui está");
 
 module.exports = { 

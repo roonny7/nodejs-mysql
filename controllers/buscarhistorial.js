@@ -6,13 +6,17 @@ const Sequelize  = require('sequelize');
 const { TiposEmpleado } = require("../models/TiposEmpleado");
 const { Historial } = require("../models/historial");
 const { Puestos } = require("../models/puestos");
+const { TipoMovimientos} = require ("../models/TiposMovimientos")
 
 
 const Op  = Sequelize.Op;
 
 const buscarhistorial = async(req = request, res= response) =>  {
      
-    let NoEmpleado='14455';
+    const { id:NoEmpleado }  = req.params;
+    console.log(req.params);
+    
+    console.log(NoEmpleado);
     (NoEmpleado) ? whereNoEmpleado = { NoEmpleado : NoEmpleado } : whereNoEmpleado={ NoEmpleado : '00000' };
     
     let condicionesWhere = {...whereNoEmpleado}
@@ -30,6 +34,9 @@ const buscarhistorial = async(req = request, res= response) =>  {
    Historial.belongsTo(Puestos, {foreignKey: 'IdPuesto'});
    Puestos.hasOne(Historial, {foreignKey : 'IdPuesto', targetKey : 'IdPuesto'} );
    
+   Historial.belongsTo(TipoMovimientos, {foreignKey: 'IdTipoMovimiento'});
+   TipoMovimientos.hasOne(Historial, {foreignKey : 'IdTipoMovimiento', targetKey : 'IdTipoMovimiento'} );
+
    /*Empleados.belongsTo(Niveles, {foreignKey: 'IdNivel'});
    Empleados.belongsTo(TiposEmpleado, {foreignKey: 'TipoEmp'});
 
@@ -44,7 +51,7 @@ const buscarhistorial = async(req = request, res= response) =>  {
    const historial = await Historial.findAll({  
     where: condicionesWhere ,
     include : [{ model : Niveles, required : true}, { model : TiposEmpleado, required : true}, { model : Dependencias, required : true},
-        { model : Puestos, required : true}],
+        { model : Puestos, required : true}, { model : TipoMovimientos, required : true}],
     order : [ ['Fecha', 'ASC']]
     //include : [{ model : Dependencias, required : true}, { model : Niveles, required : true}, { model : TiposEmpleado, required : true}],
 

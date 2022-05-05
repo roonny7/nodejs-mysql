@@ -5,6 +5,7 @@ const { buscarniveles, buscarnivelid, actualizarnivelid, crearniveles, borrarNiv
 const { buscarempleados } = require('../controllers/buscarempleados');
 const { buscarempleadosid } = require('../controllers/buscarempleadosid');
 const { buscarhistorial } = require('../controllers/buscarhistorial');
+const { buscarmovimientos } = require('../controllers/buscarmovimientos');
 const router = Router();
 
 router.get('/users/',  buscarusuarios);
@@ -22,7 +23,8 @@ router.delete('/niveles/:id',  borrarNivel)
 
 router.get('/empleados/',  buscarempleados);
 router.get('/empleados/:id',  buscarempleadosid);
-router.get('/historial',  buscarhistorial);
+router.get('/historial/:id',  buscarhistorial);
+router.get('/movimientos/:id',  buscarmovimientos);
 
 
 

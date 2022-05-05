@@ -24,7 +24,7 @@ var Puestos = dbConnection.define("Puestos", {
 );
 
 // sync model
-dbConnection.sync();
+//dbConnection.sync();
 //console.log("aqui está");
 
 module.exports = { 

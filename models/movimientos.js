@@ -1,51 +1,37 @@
 const { Sequelize }  = require('sequelize');
 const { dbConnection }  = require('../database/config');
 
-var Historial = dbConnection.define("Historial", {
+var Movimientos = dbConnection.define("Movimientos", {
   id: {
     type: Sequelize.INTEGER,
     allowNull: false,
-    primaryKey: true,
-    
-    field : 'NoEmpleado'
+    primaryKey: true,    
+    field : 'IdMovimiento'
 },
 IdDependencia: {
       type: Sequelize.INTEGER,
       allowNull: false,
       
   },
-  IdTipoEmpleado: {
+  IdTipo: {
     type: Sequelize.INTEGER,
     allowNull: false,
     
 },
-  IdPuesto: {
-      type: Sequelize.INTEGER,
-      allowNull: false
-  },
   NoEmpleado: {
     type: Sequelize.STRING,
     allowNull: false
   },
-  IdTipoMovimiento: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
-  IdNivel: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    references : {
-      model : 'Niveles',
-      key : 'IdNivel'
-    }
-  },
-  Fecha: {
+  Alta: {
     type: Sequelize.DATE,
     allowNull: false
 },
- 
+  Baja: {
+    type: Sequelize.DATE,
+    allowNull: false
+},
 }, {
-  modelName: "Dependencias",
+  modelName: "Movimientos",
   timestamps: false,
   freezeTableName : true
 });
@@ -55,5 +41,5 @@ IdDependencia: {
 //console.log("aqui está");
 
 module.exports = { 
-    Historial
+    Movimientos
 }
