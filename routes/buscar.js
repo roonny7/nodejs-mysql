@@ -7,6 +7,7 @@ const { buscarempleadosid } = require('../controllers/buscarempleadosid');
 const { buscarhistorial } = require('../controllers/buscarhistorial');
 const { buscarmovimientos } = require('../controllers/buscarmovimientos');
 const { buscarexpedientes } = require('../controllers/buscarexpedientes');
+const { crearfiniquito } = require('../controllers/crearfiniquito');
 const router = Router();
 
 router.get('/users/',  buscarusuarios);
@@ -28,6 +29,8 @@ router.get('/historial/:id',  buscarhistorial);
 router.get('/movimientos/:id',  buscarmovimientos);
 
 router.get('/expedientes/:id/:tipo',  buscarexpedientes);
+
+router.post('/finiquitos',  crearfiniquito);
 
 
 
